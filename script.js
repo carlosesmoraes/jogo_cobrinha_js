@@ -17,5 +17,27 @@ function criarCobrinha(){
         context.fillRect(snake[i].x, snake[i].y, Box, Box);
     }
 }
-criarBG();
-criarCobrinha();
+
+function iniciarJogo(){
+    criarBG();
+    criarCobrinha();
+    
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+//movimento da cobrinha
+    if(direction == "right") snakeX += Box;
+    if(direction == "left") snakeX -= Box;
+    if(direction == "up") snakeY += Box;
+    if(direction == "down") snakeY -= Box;
+
+    snake.pop();
+
+    let newHead = {
+        x: snakeX, 
+        y: snakeY,
+    }
+
+    snake.unshift(newHead);
+}
+
+let jogo = setInterval(iniciarJogo, 100);
